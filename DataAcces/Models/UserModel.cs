@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAcces.Models;
+namespace DataAccess.Models;
 
 public class UserModel
 {
@@ -13,7 +13,7 @@ public class UserModel
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Phone { get; set; }
-
     public byte[] PasswordHash { get; set; }
     public byte[] PasswordSalt { get; set; }
+    public string Role { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿using DataAcces.Models;
+﻿using DataAccess.Models;
 using DataAccess.DbAccess;
 using System;
 using System.Collections.Generic;
@@ -22,10 +22,10 @@ public class UserData : IUserData
         return _db.LoadData<UserModel, dynamic>("reservation_system.spUser_GetAll", new { });
     }
 
-    public async Task<UserModel?> GetUser(int id)
+    public async Task<UserModel?> GetUser(string email)
     {
         var results =
-            await _db.LoadData<UserModel, dynamic>("reservation_system.spUser_Get_By_Id", new { id = id });
+            await _db.LoadData<UserModel, dynamic>("reservation_system.spUser_Get_By_Email", new { Email = email });
         return results.FirstOrDefault();
     }
 
