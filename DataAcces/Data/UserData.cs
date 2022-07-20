@@ -17,30 +17,15 @@ public class UserData : IUserData
         _db = db;
     }
 
-    public Task<IEnumerable<UserModel>> GetUsers()
-    {
-        return _db.LoadData<UserModel, dynamic>("reservation_system.spUser_GetAll", new { });
-    }
-
     public async Task<UserModel?> GetUser(string email)
     {
         var results =
-            await _db.LoadData<UserModel, dynamic>("reservation_system.spUser_Get_By_Email", new { Email = email });
+            await _db.LoadData<UserModel, dynamic>("reservation_system.spUsers_Get_By_Email", new { Email = email });
         return results.FirstOrDefault();
     }
 
     public Task InsertUser(UserModel user)
     {
-        return _db.SaveData("reservation_system.spUser_Insert", new { user.FirstName, user.LastName, user.Email, user.Phone, user.PasswordHash, user.PasswordSalt });
-    }
-
-    public Task UpdateUser(UserModel user)
-    {
-        return _db.SaveData("reservation_system.spUser_Update", user);
-    }
-
-    public Task DeleteUser(int id)
-    {
-        return _db.SaveData("reservation_system.spUser_Delete", new { Id = id });
+        return _db.SaveData("reservation_system.spUsers_Insert", new { user.FirstName, user.LastName, user.Email, user.Phone, user.PasswordHash, user.PasswordSalt });
     }
 }

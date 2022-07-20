@@ -1,4 +1,4 @@
-﻿namespace ReservationSystemAPI
+﻿namespace ReservationSystemAPI.Auth
 {
     public interface IAuthTokenCreator
     {

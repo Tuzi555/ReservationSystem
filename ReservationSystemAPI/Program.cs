@@ -1,7 +1,7 @@
-using DataAccess.DbAccess;
+﻿using DataAccess.DbAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using ReservationSystemAPI;
+using ReservationSystemAPI.Auth;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IUserData, UserData>();
+builder.Services.AddSingleton<IClassScheduleData, ClassScheduleData>();
+builder.Services.AddSingleton<IClassData, ClassData>();
 builder.Services.AddSingleton<IAuthTokenCreator, AuthTokenCreator>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

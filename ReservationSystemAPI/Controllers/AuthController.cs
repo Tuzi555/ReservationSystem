@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Text;
-using DataAccess.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using ReservationSystemAPI.Auth;
 
 namespace ReservationSystemAPI.Controllers;
 
