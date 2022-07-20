@@ -20,4 +20,8 @@ public class ClassData : IClassData
     {
         return _db.LoadData<ClassModel, dynamic>("reservation_system.spClasses_GetAll", new { });
     }
+    public Task InsertClass(ClassModel classModel)
+    {
+        return _db.SaveData("reservation_system.spClasses_Insert", new { classModel.Name, classModel.Description, classModel.Capacity });
+    }
 }

@@ -10,7 +10,9 @@ namespace DataAccess.Models
     {
         public int Id { get; set; }
         public int ClassId { get; set; }
-        public DateTime startTime { get; set; }
-        public DateTime endTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int Capacity { get; set; }
+        public int FreeCapacity { get; set; }
     }
 }
