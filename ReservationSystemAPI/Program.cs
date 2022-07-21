@@ -27,7 +27,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IUserData, UserData>();
-builder.Services.AddSingleton<IClassScheduleData, ClassScheduleData>();
+builder.Services.AddTransient<IClassScheduleData, ClassScheduleData>();
 builder.Services.AddSingleton<IClassData, ClassData>();
 builder.Services.AddSingleton<IReservationData, ReservationData>();
 builder.Services.AddSingleton<IAuthTokenCreator, AuthTokenCreator>();

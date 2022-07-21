@@ -42,6 +42,11 @@ public class UserController : ControllerBase
     [Authorize]
     public async Task<ActionResult<ReservationModel>> CreateReservation(ReservationModel reservationModel)
     {
+        if (await _reservationCreationValidator.ClassScheduleExists(_classScheduleData, reservationModel.ClassScheduleId))
+        {
+            return Problem("Class schedule does not exist.");
+        }
+
         if (!await _reservationCreationValidator.IsFree(_classScheduleData, reservationModel.ClassScheduleId))
         {
             return Problem("Class is full.");
@@ -51,6 +56,8 @@ public class UserController : ControllerBase
         {
             return Problem("User can have only one reservation.");
         }
+
+
 
         var accessToken = await HttpContext.GetTokenAsync("access_token");
         int currentUserId = _userIdentifier.GetUserIdFromToken(accessToken, _configuration);
