@@ -20,4 +20,9 @@ public class ReservationData : IReservationData
     {
         return _db.SaveData("reservation_system.spReservations_Insert", new { reservationModel.ClassScheduleId, reservationModel.UserId });
     }
+
+    public Task<IEnumerable<ReservationModel>> GetReservations()
+    {
+        return _db.LoadData<ReservationModel, dynamic>("reservation_system.spReservations_GetAll", new { });
+    }
 }

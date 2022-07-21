@@ -42,26 +42,33 @@ public class UserController : ControllerBase
     [Authorize]
     public async Task<ActionResult<ReservationModel>> CreateReservation(ReservationModel reservationModel)
     {
-        if (! await _reservationCreationValidator.IsFree(_classScheduleData, reservationModel.ClassScheduleId))
+        if (!await _reservationCreationValidator.IsFree(_classScheduleData, reservationModel.ClassScheduleId))
         {
             return Problem("Class is full.");
         }
-        var accessToken = await HttpContext.GetTokenAsync("access_token");
-        int currentUserId = _userIdentifier.GetUserIdFromToken(accessToken, _configuration);
-        if (_reservationCreationValidator.SelfReservation(currentUserId, reservationModel.UserId))
+
+        if (await _reservationCreationValidator.HasReservation(_reservationData, reservationModel.ClassScheduleId, reservationModel.UserId))
         {
-            try
-            {
-                await _reservationData.InsertReservation(reservationModel);
-                return Ok(reservationModel);
-            }
-            catch (Exception e)
-            {
-                return Problem(e.Message);
-            }
+            return Problem("User can have only one reservation.");
         }
 
-        else { return Problem("User can not create reservation for another user"); }
-       
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+        int currentUserId = _userIdentifier.GetUserIdFromToken(accessToken, _configuration);
+
+        if (!_reservationCreationValidator.SelfReservation(currentUserId, reservationModel.UserId))
+        {
+            return Problem("User can not create reservation for another user");
+        }
+
+        try
+        {
+            await _reservationData.InsertReservation(reservationModel);
+            return Ok(reservationModel);
+        }
+        catch (Exception e)
+        {
+            return Problem(e.Message);
+        }
+
     }
 }
