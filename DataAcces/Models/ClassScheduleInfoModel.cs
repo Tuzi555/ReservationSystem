@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models
 {
-    public class ClassScheduleModel
+    public class ClassScheduleInfoModel
     {
         public int Id { get; set; }
         public int ClassId { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public int Capacity { get; set; }
+        public int FreeCapacity { get; set; }
     }
 }

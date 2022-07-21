@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ReservationSystemAPI.Auth;
+using Services.Logic;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
@@ -28,7 +29,10 @@ builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddSingleton<IUserData, UserData>();
 builder.Services.AddSingleton<IClassScheduleData, ClassScheduleData>();
 builder.Services.AddSingleton<IClassData, ClassData>();
+builder.Services.AddSingleton<IReservationData, ReservationData>();
 builder.Services.AddSingleton<IAuthTokenCreator, AuthTokenCreator>();
+builder.Services.AddSingleton<IUserIdentifier, UserIdentifier>();
+builder.Services.AddSingleton<IReservationCreationValidator, ReservationCreationValidator>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -41,6 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidAudience = builder.Configuration.GetSection("AppSettings:Audience").Value,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value))
     };
+    options.SaveToken = true;
 });
 
 var app = builder.Build();

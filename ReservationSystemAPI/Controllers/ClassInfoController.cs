@@ -19,7 +19,7 @@ namespace ReservationSystemAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("class-schedules")]
-        public async Task<ActionResult<ClassScheduleModel>> GetClassSchedules()
+        public async Task<ActionResult<ClassScheduleInfoModel>> GetClassSchedules()
         {
             try
             {

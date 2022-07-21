@@ -17,8 +17,18 @@ public class ClassScheduleData : IClassScheduleData
         _db = db;
     }
 
-    public Task<IEnumerable<ClassScheduleModel>> GetClassSchedules()
+    public Task<IEnumerable<ClassScheduleInfoModel>> GetClassSchedules()
     {
-        return _db.LoadData<ClassScheduleModel, dynamic>("reservation_system.spClassSchedules_GetAll", new { });
+        return _db.LoadData<ClassScheduleInfoModel, dynamic>("reservation_system.spClassSchedules_GetAll", new { });
+    }
+
+    public Task<IEnumerable<ClassScheduleInfoModel>> GetClassSchedule(int id)
+    {
+        return _db.LoadData<ClassScheduleInfoModel, dynamic>("reservation_system.spClassSchedules_Get_By_Id", new { Id = id });
+    }
+
+    public Task InsertClassSchedule(ClassScheduleModel classScheduleModel)
+    {
+        return _db.SaveData("reservation_system.spClassSchedules_Insert", new { classScheduleModel.ClassId, classScheduleModel.StartTime, classScheduleModel.EndTime });
     }
 }

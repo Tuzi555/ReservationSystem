@@ -16,7 +16,7 @@ public class AdminController : ControllerBase
         _classScheduleData = classScheduleData;
     }
 
-    [HttpPost]
+    [HttpPost("class")]
     [Authorize(Roles = "admin")]
     public async Task<ActionResult<ClassModel>> CreateClass(ClassModel classModel)
     {
@@ -24,6 +24,21 @@ public class AdminController : ControllerBase
         {
             await _classData.InsertClass(classModel);
             return Ok(classModel);
+        }
+        catch (Exception e)
+        {
+            return Problem(e.Message);
+        }
+    }
+
+    [HttpPost("class-schedule")]
+    [Authorize(Roles = "admin")]
+    public async Task<ActionResult<ClassScheduleModel>> CreateClassSchedule(ClassScheduleModel classScheduleModel)
+    {
+        try
+        {
+            await _classScheduleData.InsertClassSchedule(classScheduleModel);
+            return Ok(classScheduleModel);
         }
         catch (Exception e)
         {

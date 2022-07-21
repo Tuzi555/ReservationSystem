@@ -4,6 +4,7 @@ namespace DataAccess.Data
 {
     public interface IClassScheduleData
     {
-        Task<IEnumerable<ClassScheduleModel>> GetClassSchedules();
+        Task<IEnumerable<ClassScheduleInfoModel>> GetClassSchedules();
+        Task InsertClassSchedule(ClassScheduleModel classScheduleModel);
     }
 }

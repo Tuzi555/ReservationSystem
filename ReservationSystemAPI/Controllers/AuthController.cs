@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services;
 using Microsoft.AspNetCore.Authorization;
 using ReservationSystemAPI.Auth;
+using Services.Passwords;
 
 namespace ReservationSystemAPI.Controllers;
 

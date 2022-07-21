@@ -22,7 +22,8 @@ public class AuthTokenCreator : IAuthTokenCreator
         List<Claim> claims = new List<Claim>
         {
             new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.Role, user.Role),
+            new Claim(ClaimTypes.NameIdentifier, Convert.ToString(user.Id))
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
