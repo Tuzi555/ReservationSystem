@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DataAccess": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "SQLAZURECONNSTR_Default": "jdbc:sqlserver:/lump.database.windows.net:1433;database=Lump_SandboxDB;user=tuzi@lump;password=i86IvCzR0;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
+      }
+    }
+  }
+}

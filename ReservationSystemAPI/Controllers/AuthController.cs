@@ -17,7 +17,11 @@ public class AuthController : ControllerBase
         _userData = userData;
         _tokenCreator = tokenCreator;
     }
-
+    /// <summary>
+    /// Creates a new user. Id can remain 0 (db handles id assignment).
+    /// </summary>
+    /// <param name="userDto"></param>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("register")]
     public async Task<ActionResult<UserModel>> Register(UserDto userDto)
@@ -41,6 +45,11 @@ public class AuthController : ControllerBase
             return Problem(e.Message);
         }
     }
+    /// <summary>
+    /// Returns a JWT token after posting correct email and password.
+    /// </summary>
+    /// <param name="login"></param>
+    /// <returns></returns>
     [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<UserModel>> Login(LoginDto login)

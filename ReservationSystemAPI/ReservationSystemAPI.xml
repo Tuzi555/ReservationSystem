@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ReservationSystemAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ReservationSystemAPI.Controllers.AdminController.CreateClass(DataAccess.Models.ClassModel)">
+            <summary>
+            Creates a new class that can be scheduled. Class name has to be unique. Id can remain 0 (db handles id assignment).
+            </summary>
+            <param name="classModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.AdminController.CreateClassSchedule(DataAccess.Models.ClassScheduleModel)">
+            <summary>
+            Creates a new class schedule. API call returns an error, if admin tries to create schedule for non-existent class. Id can remain 0 (db handles id assignment).
+            </summary>
+            <param name="classScheduleModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.AuthController.Register(DataAccess.Dto.UserDto)">
+            <summary>
+            Creates a new user. Id can remain 0 (db handles id assignment).
+            </summary>
+            <param name="userDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.AuthController.Login(DataAccess.Dto.LoginDto)">
+            <summary>
+            Returns a JWT token after posting correct email and password.
+            </summary>
+            <param name="login"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.ClassInfoController.GetClassSchedules">
+            <summary>
+            Returns list of all scheduled classes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.ClassInfoController.GetClasses">
+            <summary>
+            Returns list of all classes, that can be scheduled.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.UserController.GetCurrentUserId">
+            <summary>
+            Returns id of a current user. Id is obtained from JWT token.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ReservationSystemAPI.Controllers.UserController.CreateReservation(DataAccess.Models.ReservationModel)">
+            <summary>
+            Creates reservation for current user for given class schedule. User can create reservation only for himself/herself. User can have only one reservation per scheduled class. User can not create reservation if class is full. Id can remain 0 (db handles id assignment).
+            </summary>
+            <param name="reservationModel"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

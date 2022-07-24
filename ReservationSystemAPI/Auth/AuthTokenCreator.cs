@@ -34,7 +34,7 @@ public class AuthTokenCreator : IAuthTokenCreator
             issuer: _configuration.GetSection("AppSettings:Issuer").Value,
             audience: _configuration.GetSection("AppSettings:Audience").Value,
             claims: claims,
-            expires: DateTime.Now.AddDays(1),
+            expires: DateTime.UtcNow.AddYears(1),
             signingCredentials: creds
             );
 

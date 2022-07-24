@@ -29,6 +29,10 @@ public class UserController : ControllerBase
         _classScheduleData = classScheduleData;
     }
 
+    /// <summary>
+    /// Returns id of a current user. Id is obtained from JWT token.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("me")]
     [Authorize]
     public async Task<ActionResult<int>> GetCurrentUserId()
@@ -38,6 +42,11 @@ public class UserController : ControllerBase
         return userId;
     }
 
+    /// <summary>
+    /// Creates reservation for current user for given class schedule. User can create reservation only for himself/herself. User can have only one reservation per scheduled class. User can not create reservation if class is full. Id can remain 0 (db handles id assignment).
+    /// </summary>
+    /// <param name="reservationModel"></param>
+    /// <returns></returns>
     [HttpPost("reservation")]
     [Authorize]
     public async Task<ActionResult<ReservationModel>> CreateReservation(ReservationModel reservationModel)

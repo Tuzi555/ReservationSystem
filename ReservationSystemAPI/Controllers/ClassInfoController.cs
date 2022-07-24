@@ -17,6 +17,10 @@ namespace ReservationSystemAPI.Controllers
             _classData = classData;
         }
 
+        /// <summary>
+        /// Returns list of all scheduled classes.
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("class-schedules")]
         public async Task<ActionResult<ClassScheduleInfoModel>> GetClassSchedules()
@@ -31,6 +35,10 @@ namespace ReservationSystemAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns list of all classes, that can be scheduled.
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("classes")]
         public async Task<ActionResult<ClassModel>> GetClasses()
