@@ -64,8 +64,8 @@ builder.Services.AddSwaggerGen(c =>
         },
         License = new OpenApiLicense
         {
-            Name = "MIT License",
-            Url = new Uri("https://opensource.org/licenses/MIT")
+            Name = "GNU General Public License version 3",
+            Url = new Uri("https://www.gnu.org/licenses/gpl-3.0.html")
         },
         Version = "v1"
     });
